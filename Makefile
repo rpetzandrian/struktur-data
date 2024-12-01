@@ -1,15 +1,11 @@
 DIR_NAME = dist
 
-.PHONY: checkdir
-
-checkdir:
-	@if [ ! -d "$(DIR_NAME)" ]; then \
-		mkdir -p $(DIR_NAME); \
-		echo "Direktori '$(DIR_NAME)' telah dibuat."; \
-
 run : 
+	@if [ ! -d "$(DIR_NAME)" ]; then \
+			mkdir -p $(DIR_NAME); \
+	fi
 	g++ -std=c++17 -o dist/main *.cpp src/*.cpp -I include
-	./dist/main
+	./$(DIR_NAME)/main
 
 clean :
-	rm dist/main
+	rm $(DIR_NAME)/main
