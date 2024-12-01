@@ -1,0 +1,44 @@
+
+#ifndef HOSPITAL_H
+#define HOSPITAL_H
+#include <iostream>
+#include "schedule.h"
+
+#define first(L) L.first
+#define next(P) P->next
+#define info(P) P->info
+#define schedule(P) P->schedule
+
+using namespace std;
+
+struct HospitalInfo
+{
+    string id;
+    string name;
+    string hospital_address;
+};
+
+typedef struct HospitalElement *hospitalAdr;
+
+struct HospitalElement
+{
+    HospitalInfo info;
+    ScheduleAdr schedule;
+    hospitalAdr next;
+};
+
+struct HospitalList
+{
+    hospitalAdr first;
+};
+
+void createHospitalList(HospitalList &H);
+hospitalAdr createHospitalElm(HospitalInfo h);
+void insertHospital(HospitalList &H, hospitalAdr P);
+hospitalAdr deleteHospital(HospitalList &H, string id);
+hospitalAdr findHospital(HospitalList H, string id);
+void showHospital(HospitalList H);
+void insertHospitalSchedule(HospitalList &H, hospitalAdr P, ScheduleAdr S);
+void countEveryHospitalSchedule(HospitalList H);
+
+#endif
