@@ -23,7 +23,7 @@ typedef struct HospitalElement *hospitalAdr;
 struct HospitalElement
 {
     HospitalInfo info;
-    ScheduleAdr schedule;
+    ScheduleList schedule;
     hospitalAdr next;
 };
 
@@ -33,12 +33,11 @@ struct HospitalList
 };
 
 void createHospitalList(HospitalList &H);
-hospitalAdr createHospitalElm(HospitalInfo h);
+hospitalAdr createHospitalElm(HospitalInfo h, ScheduleList &S);
 void insertHospital(HospitalList &H, hospitalAdr P);
 hospitalAdr deleteHospital(HospitalList &H, string id);
 hospitalAdr findHospital(HospitalList H, string id);
 void showHospital(HospitalList H);
-void insertHospitalSchedule(HospitalList &H, hospitalAdr P, ScheduleAdr S);
 void countEveryHospitalSchedule(HospitalList H);
 
 #endif

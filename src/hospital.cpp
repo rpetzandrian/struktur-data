@@ -8,12 +8,12 @@ void createHospitalList(HospitalList &H)
     first(H) = NULL;
 }
 
-hospitalAdr createHospitalElm(HospitalInfo h)
+hospitalAdr createHospitalElm(HospitalInfo h, ScheduleList &S)
 {
     hospitalAdr P = new HospitalElement;
     info(P) = h;
     next(P) = NULL;
-    schedule(P) = NULL;
+    schedule(P) = S;
     return P;
 }
 
@@ -77,7 +77,8 @@ void showHospital(HospitalList H)
         cout << "Hospital Name: " << info(P).name << endl;
         cout << "Hospital Address: " << info(P).hospital_address << endl;
 
-        ScheduleAdr S = schedule(P);
+        ScheduleList SL = schedule(P);
+        ScheduleAdr S = first(SL);
         while (S != NULL)
         {
             cout << "===================================" << endl;
@@ -98,18 +99,14 @@ void showHospital(HospitalList H)
     }
 }
 
-void insertHospitalSchedule(HospitalList &H, hospitalAdr P, ScheduleAdr S)
-{
-    schedule(P) = S;
-}
-
 void countEveryHospitalSchedule(HospitalList H)
 {
     hospitalAdr P = first(H);
     while (P != NULL)
     {
         int count = 0;
-        ScheduleAdr S = schedule(P);
+        ScheduleList SL = schedule(P);
+        ScheduleAdr S = first(SL);
         while (S != NULL)
         {
             count++;
