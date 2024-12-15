@@ -1,5 +1,7 @@
 #include <iostream>
+#include <vector>
 #include "hospital.h"
+#include "table.h"
 
 using namespace std;
 
@@ -95,6 +97,32 @@ void showHospital(HospitalList H)
         }
 
         cout << "+-----------------------------------+" << endl;
+        P = next(P);
+    }
+}
+
+void showDoctorFromHospitals(HospitalList H){
+    hospitalAdr P = first(H);
+    while (P != NULL)
+    {
+        vector<vector<string>> data;
+
+        ScheduleList SL = schedule(P);
+        ScheduleAdr S = first(SL);
+        while (S != NULL)
+        {
+            if (doctor(S) != NULL)
+            {
+                data.push_back(vector<string>{ info(doctor(S)).name , info(doctor(S)).speciality });
+            }
+            S = next(S);
+        }
+        string title = info(P).name + "\n#ID" + info(P).id + "\n" + info(P).hospital_address;
+        try {
+            printTable(2 , 20 , title , data);
+        } catch (const exception& e){
+            cerr << "error : " << e.what() << endl;
+        }
         P = next(P);
     }
 }

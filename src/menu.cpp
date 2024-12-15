@@ -73,15 +73,15 @@ void handleChoice(HospitalList &H, DoctorList &D)
             handleExit();
             break;
         case 4:
-            deleteHospital();
+            deleteHospitals(H);
             handleExit();
             break;
         case 5:
-            deleteDoctor();
+            deleteDoctors(D);
             handleExit();
             break;
         case 6:
-            deleteSchedule();
+            deleteSchedules(H);
             handleExit();
             break;
         case 7:
@@ -105,7 +105,7 @@ void handleChoice(HospitalList &H, DoctorList &D)
             handleExit();
             break;
         case 12:
-            showDoctorFromHospital();
+            showDoctorFromHospital(H);
             handleExit();
             break;
         case 13:
@@ -152,10 +152,13 @@ void createHospital(HospitalList &H)
     HospitalInfo hospitalInfo;
     cout << "Masukkan ID Rumah Sakit: ";
     cin >> hospitalInfo.id;
+    cin.ignore();
+
     cout << "Masukkan Nama Rumah Sakit: ";
-    cin >> hospitalInfo.name;
+    std::getline(cin, hospitalInfo.name);
+
     cout << "Masukkan Alamat Rumah Sakit: ";
-    cin >> hospitalInfo.hospital_address;
+    std::getline(cin, hospitalInfo.hospital_address);
 
     ScheduleList S;
     createScheduleList(S);
@@ -204,21 +207,49 @@ void createSchedule(HospitalList &H, DoctorList &D)
     cout << "Masukkan Jam Selesai: ";
     cin >> scheduleInfo.end;
 
-    ScheduleAdr schedule = createScheduleElm(scheduleInfo);
+    ScheduleAdr schedule = createScheduleElm(scheduleInfo , d);
     insertSchedule(schedule(h), schedule);
 }
 
-void deleteHospital()
+void deleteHospitals(HospitalList &H)
 {
-    cout << "Not Implemented" << endl;
+    string id;
+    cout << "Masukkan ID Rumah Sakit : ";
+    cin >> id;
+    hospitalAdr hospital = deleteHospital(H , id);
+    if(hospital != nullptr){
+        cout << "Data Rumah Sakit berhasil terhapus" << endl;
+    } else {
+        cout << "Data Rumah Sakit tidak ditemukan" << endl;
+    }
 }
-void deleteDoctor()
+void deleteDoctors(DoctorList &D)
 {
-    cout << "Not Implemented" << endl;
+    string id;
+    cout << "Masukkan ID Dokter : ";
+    cin >> id;
+    DoctorAdr doctor = deleteDoctor(D , id);
+    if(doctor != nullptr){
+        cout << "Data dokter berhasil terhapus" << endl;
+    } else {
+        cout << "Data dokter tidak ditemukan" << endl;
+    }
 }
-void deleteSchedule()
+void deleteSchedules(HospitalList &H)
 {
-    cout << "Not Implemented" << endl;
+    string id;
+    string id_rs;
+    cout << "Masukkan ID Jadwal : ";
+    cin >> id;
+    cout << "Masukkan ID Rumah Sakit : ";
+    cin >> id_rs;
+    hospitalAdr hospital = findHospital(H , id_rs);
+    ScheduleAdr schedule = deleteSchedule(hospital->schedule , id);
+    if(schedule != nullptr){
+        cout << "Data jadwal berhasil terhapus" << endl;
+    } else {
+        cout << "Data jadwal tidak ditemukan" << endl;
+    }
 }
 void searchHospital()
 {
@@ -240,9 +271,9 @@ void showDoctorList(DoctorList &D)
 {
     showDoctor(D);
 }
-void showDoctorFromHospital()
+void showDoctorFromHospital(HospitalList H)
 {
-    cout << "Not Implemented" << endl;
+    showDoctorFromHospitals(H);
 }
 void showHospitalWithDetail()
 {
