@@ -68,7 +68,7 @@ hospitalAdr findHospital(HospitalList H, string id)
     return P;
 }
 
-void showHospital(HospitalList H)
+void showHospital(HospitalList H, bool withDetail = false)
 {
     hospitalAdr P = first(H);
     while (P != NULL)
@@ -79,7 +79,7 @@ void showHospital(HospitalList H)
 
         ScheduleList SL = schedule(P);
         ScheduleAdr S = first(SL);
-        while (S != NULL)
+        while (S != NULL && withDetail)
         {
             cout << "===================================" << endl;
             cout << "Schedule ID: " << info(S).id << endl;

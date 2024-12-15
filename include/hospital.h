@@ -37,7 +37,7 @@ hospitalAdr createHospitalElm(HospitalInfo h, ScheduleList &S);
 void insertHospital(HospitalList &H, hospitalAdr P);
 hospitalAdr deleteHospital(HospitalList &H, string id);
 hospitalAdr findHospital(HospitalList H, string id);
-void showHospital(HospitalList H);
+void showHospital(HospitalList H, bool withDetail = false);
 void countEveryHospitalSchedule(HospitalList H);
 
 #endif
