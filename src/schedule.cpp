@@ -8,12 +8,12 @@ void createScheduleList(ScheduleList &S)
     first(S) = NULL;
 }
 
-ScheduleAdr createScheduleElm(ScheduleInfo s)
+ScheduleAdr createScheduleElm(ScheduleInfo s , DoctorAdr d)
 {
     ScheduleAdr P = new ScheduleElement;
     info(P) = s;
     next(P) = NULL;
-    doctor(P) = NULL;
+    P->doctor = d;
     return P;
 }
 
