@@ -160,7 +160,7 @@ void countEveryHospitalSchedule(HospitalList H)
     }
 }
 
-int countDoctorInHospital(HospitalList &H, string doctorId)
+int countDoctorInHospital(HospitalList H, string doctorId)
 {
     int count = 0;
     hospitalAdr h = first(H);
@@ -172,6 +172,8 @@ int countDoctorInHospital(HospitalList &H, string doctorId)
         {
             count++;
         }
+
+        h = next(h);
     }
 
     return count;

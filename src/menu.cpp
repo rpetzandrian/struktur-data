@@ -396,9 +396,11 @@ void countDoctorWithoutSchedule(HospitalList &H, DoctorList &D)
         {
             total++;
         }
+
+        d = next(d);
     }
 
-    cout << "Terdapat " << total << " Dokter yang tidak memiliki jadwal praktek";
+    cout << "Terdapat " << total << " Dokter yang tidak memiliki jadwal praktek" << endl;
 }
 
 void editDoctorScheduleInHospital(HospitalList &H, DoctorList &D)
