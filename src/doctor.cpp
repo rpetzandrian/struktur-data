@@ -38,15 +38,22 @@ DoctorAdr deleteDoctor(DoctorList &D, string id)
     DoctorAdr P = findDoctor(D, id);
     if (P != NULL)
     {
-        if (P == first(D))
+        if (first(D) == P && last(D) == P)
+        {
+            first(D) = NULL;
+            last(D) = NULL;
+        }
+        else if (P == first(D))
         {
             first(D) = next(P);
+            if (first(D) != NULL)
             prev(first(D)) = NULL;
             next(P) = NULL;
         }
         else if (P == last(D))
         {
             last(D) = prev(P);
+            if (last(D) != NULL)
             next(last(D)) = NULL;
             prev(P) = NULL;
         }
@@ -60,6 +67,7 @@ DoctorAdr deleteDoctor(DoctorList &D, string id)
     }
     return P;
 }
+
 
 DoctorAdr findDoctor(DoctorList D, string id)
 {

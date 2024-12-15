@@ -7,6 +7,21 @@
 
 using namespace std;
 
+// void addDoctor(DoctorList &D, DoctorAdr newDoctor) {
+//     if (newDoctor == NULL) return;
+
+//     if (D.first == NULL) {
+//         // List is empty, newDoctor becomes the first and last element
+//         D.first = newDoctor;
+//         D.last = newDoctor;
+//     } else {
+//         // Add newDoctor to the end of the list
+//         newDoctor->prev = D.last;
+//         D.last->next = newDoctor;
+//         D.last = newDoctor;
+//     }
+// }
+
 int main()
 {
     HospitalList H;
@@ -14,21 +29,10 @@ int main()
 
     DoctorList D;
     createDoctorList(D);
+    // DoctorInfo doctor1 = {"1", "SIP123", "Dr. John", "Cardiologist", 45};
+    // addDoctor(D, createDoctorElm(doctor1));
 
     handleChoice(H, D);
-    // vector<vector<string>> data;
-
-	// // Adding rows incrementally
-	// data.push_back(vector<string>{ "Cell11", "Cell12", "Cell13" });
-	// data.push_back(vector<string>{ "Cell21", "Cell22", "Cell23" });
-	// data.push_back(vector<string>{ "Cell31", "Cell32", "Cell33" });
-	// string title = "RS Pinna\nID : 11\nJl. Suropati";
-
-	// try {
-	// 	printTable(3, 10, title, data);
-	// } catch (const exception& e) {
-	// 	cerr << "Error: " << e.what() << endl;
-	// }
 
     return 0;
 }

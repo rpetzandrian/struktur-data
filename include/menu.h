@@ -18,7 +18,7 @@ void createSchedule(HospitalList &H, DoctorList &D);
 void deleteHospitals(HospitalList &H);
 void deleteDoctors(DoctorList &D);
 void deleteSchedules(HospitalList &H);
-void searchHospital();
+void searchHospital(HospitalList &H);
 void searchDoctor();
 void searchSchedule();
 void showHospitalList(HospitalList &H);
