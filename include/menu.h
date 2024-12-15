@@ -40,17 +40,17 @@ void createSchedule(HospitalList &H, DoctorList &D);
 void deleteHospitals(HospitalList &H);
 void deleteDoctors(DoctorList &D);
 void deleteSchedules(HospitalList &H);
-void searchHospital();
-void searchDoctor();
+void searchHospital(HospitalList &H);
+void searchDoctor(DoctorList &D);
 void searchSchedule();
 void showHospitalList(HospitalList &H);
 void showDoctorList(DoctorList &D);
 void showDoctorFromHospital(HospitalList H);
-void showHospitalWithDetail();
+void showHospitalWithDetail(HospitalList &H);
 void doctorWithDetail();
-void countScheduleInHospital();
-void countScheduleInDoctor();
-void countDoctorWithoutSchedule();
-void editDoctorScheduleInHospital();
+void countScheduleInHospital(HospitalList &H);
+void countScheduleInDoctor(HospitalList &H, DoctorList &D);
+void countDoctorWithoutSchedule(HospitalList &H, DoctorList &D);
+void editDoctorScheduleInHospital(HospitalList &H, DoctorList &D);
 
 #endif

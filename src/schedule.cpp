@@ -8,7 +8,7 @@ void createScheduleList(ScheduleList &S)
     first(S) = NULL;
 }
 
-ScheduleAdr createScheduleElm(ScheduleInfo s , DoctorAdr d)
+ScheduleAdr createScheduleElm(ScheduleInfo s, DoctorAdr d)
 {
     ScheduleAdr P = new ScheduleElement;
     info(P) = s;
@@ -65,23 +65,73 @@ ScheduleAdr findSchedule(ScheduleList S, string id)
     {
         P = next(P);
     }
+
+    if (P == NULL || info(P).id != id)
+    {
+        cout << "Data jadwal tidak ditemukan" << endl;
+        return NULL;
+    }
+
     return P;
 }
 
 void showSchedule(ScheduleList S)
 {
     ScheduleAdr P = first(S);
+    cout << "LIST JADWAL" << endl;
+
     while (P != NULL)
     {
+        cout << "+---------------------------------------+" << endl;
         cout << "ID: " << info(P).id << endl;
         cout << "Day: " << info(P).day << endl;
         cout << "Start: " << info(P).start << endl;
         cout << "End: " << info(P).end << endl;
+        if (doctor(P) != NULL)
+        {
+            cout << "Dokter saat ini: " << info(doctor(P)).name << endl;
+        }
+        else
+        {
+            cout << "Dokter saat ini: -" << endl;
+        }
+        cout << "+---------------------------------------+" << endl;
+
         P = next(P);
     }
 }
 
-void insertDoctorToSchedule(ScheduleList &S, ScheduleAdr P, DoctorAdr D)
+void insertDoctorToSchedule(ScheduleAdr P, DoctorAdr D)
 {
     doctor(P) = D;
+}
+
+int countSchedule(ScheduleList S)
+{
+    // count total schedule
+    int count = 0;
+    ScheduleAdr P = first(S);
+    while (P != NULL)
+    {
+        count++;
+        P = next(P);
+    }
+
+    return count;
+}
+
+DoctorAdr searchDoctorInSchedule(ScheduleList S, string doctorId)
+{
+    ScheduleAdr P = first(S);
+    while (P != NULL)
+    {
+        if (info(doctor(P)).id == doctorId)
+        {
+            return doctor(P);
+        }
+
+        P = next(P);
+    }
+
+    return NULL;
 }
