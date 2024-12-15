@@ -69,7 +69,7 @@ hospitalAdr findHospital(HospitalList H, string id)
         P = next(P);
     }
 
-    if (info(P).id != id)
+    if (P == NULL || info(P).id != id)
     {
         cout << "Data rumah sakit tidak ditemukan" << endl;
         return NULL;

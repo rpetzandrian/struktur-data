@@ -66,7 +66,7 @@ ScheduleAdr findSchedule(ScheduleList S, string id)
         P = next(P);
     }
 
-    if (info(P).id != id)
+    if (P == NULL || info(P).id != id)
     {
         cout << "Data jadwal tidak ditemukan" << endl;
         return NULL;

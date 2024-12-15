@@ -333,7 +333,7 @@ void searchSchedule()
 
 void showHospitalList(HospitalList &H)
 {
-    showHospital(H);
+    showHospital(H, false);
 }
 
 void showDoctorList(DoctorList &D)
