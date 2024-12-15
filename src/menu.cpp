@@ -358,7 +358,17 @@ void doctorWithDetail()
 
 void countScheduleInHospital(HospitalList &H)
 {
-    cout << "Not Implemented" << endl;
+    // search rumah sakit
+    string id;
+    cout << "Masukkan ID Rumah Sakit: ";
+    cin >> id;
+    hospitalAdr h = findHospital(H, id);
+
+    if (h != NULL)
+    {
+        int count = countSchedule(schedule(h));
+        cout << "Terdapat " << count << " jadwal dalam rumah sakit " << info(h).name << endl;
+    }
 }
 
 void countScheduleInDoctor()
@@ -399,14 +409,10 @@ void editDoctorScheduleInHospital(HospitalList &H, DoctorList &D)
         cin >> idS;
         ScheduleAdr s = findSchedule(schedule(h), idS);
 
-        if (s == NULL)
-        {
-            cout << "Jadwal tidak tersedia" << endl;
-        }
-        else
+        if (s != NULL)
         {
             doctor(s) = d;
-            cout << "Jadwal berhasil di rubah" << endl;
+            cout << "Jadwal berhasil diubah" << endl;
         }
     }
 }

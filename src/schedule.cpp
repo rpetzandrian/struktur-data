@@ -92,3 +92,17 @@ void insertDoctorToSchedule(ScheduleList &S, ScheduleAdr P, DoctorAdr D)
 {
     doctor(P) = D;
 }
+
+int countSchedule(ScheduleList S)
+{
+    // count total schedule
+    int count = 0;
+    ScheduleAdr P = first(S);
+    while (P != NULL)
+    {
+        count++;
+        P = next(P);
+    }
+
+    return count;
+}
