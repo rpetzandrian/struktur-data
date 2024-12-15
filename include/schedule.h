@@ -41,5 +41,6 @@ ScheduleAdr findSchedule(ScheduleList S, string id);
 void showSchedule(ScheduleList S);
 void insertDoctorToSchedule(ScheduleList &S, ScheduleAdr P, DoctorAdr D);
 int countSchedule(ScheduleList S);
+DoctorAdr searchDoctorInSchedule(ScheduleList S, string doctorId);
 
 #endif

@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
 #include "hospital.h"
+#include "doctor.h"
 #include "table.h"
 
 using namespace std;
@@ -157,4 +158,21 @@ void countEveryHospitalSchedule(HospitalList H)
 
         P = next(P);
     }
+}
+
+int countDoctorInHospital(HospitalList &H, string doctorId)
+{
+    int count = 0;
+    hospitalAdr h = first(H);
+    while (h != NULL)
+    {
+        DoctorAdr d = searchDoctorInSchedule(schedule(h), doctorId);
+
+        if (d != NULL)
+        {
+            count++;
+        }
+    }
+
+    return count;
 }

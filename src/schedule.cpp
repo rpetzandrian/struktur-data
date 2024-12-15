@@ -106,3 +106,19 @@ int countSchedule(ScheduleList S)
 
     return count;
 }
+
+DoctorAdr searchDoctorInSchedule(ScheduleList S, string doctorId)
+{
+    ScheduleAdr P = first(S);
+    while (P != NULL && info(doctor(P)).id != doctorId)
+    {
+        P = next(P);
+    }
+
+    if (info(doctor(P)).id != doctorId)
+    {
+        return NULL;
+    }
+
+    return doctor(P);
+}

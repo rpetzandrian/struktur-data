@@ -3,6 +3,7 @@
 #define HOSPITAL_H
 #include <iostream>
 #include "schedule.h"
+#include "doctor.h"
 
 #define first(L) L.first
 #define next(P) P->next
@@ -40,5 +41,6 @@ hospitalAdr findHospital(HospitalList H, string id);
 void showHospital(HospitalList H, bool withDetail = false);
 void showDoctorFromHospitals(HospitalList H);
 void countEveryHospitalSchedule(HospitalList H);
+int countDoctorInHospital(HospitalList &H, string doctorId);
 
 #endif

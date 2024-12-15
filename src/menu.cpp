@@ -138,17 +138,17 @@ void handleChoice(HospitalList &H, DoctorList &D)
             break;
         case 16:
             // 16. Hitung Jumlah Jadwal di Rumah Sakit
-            countScheduleInHospital();
+            countScheduleInHospital(H);
             handleExit();
             break;
         case 17:
             // 17. Hitung Jumlah Jadwal Dokter
-            countScheduleInDoctor();
+            countScheduleInDoctor(H, D);
             handleExit();
             break;
         case 18:
             // 18. Hitung Jumlah Dokter tanpa Jadwal
-            countDoctorWithoutSchedule();
+            countDoctorWithoutSchedule(H, D);
             handleExit();
             break;
         case 19:
@@ -371,14 +371,34 @@ void countScheduleInHospital(HospitalList &H)
     }
 }
 
-void countScheduleInDoctor()
+void countScheduleInDoctor(HospitalList &H, DoctorList &D)
 {
-    cout << "Not Implemented" << endl;
+    string idDoc;
+    cout << "Masukkan ID Dokter: ";
+    cin >> idDoc;
+    DoctorAdr d = findDoctor(D, idDoc);
+
+    if (d != NULL)
+    {
+        int count = countDoctorInHospital(H, idDoc);
+        cout << "Dokter dengan nama " << info(d).name << " mempunyai " << count << " jadwal praktek di berbagai rumah sakit." << endl;
+    }
 }
 
-void countDoctorWithoutSchedule()
+void countDoctorWithoutSchedule(HospitalList &H, DoctorList &D)
 {
-    cout << "Not Implemented" << endl;
+    int total = 0;
+    DoctorAdr d = first(D);
+    while (d != NULL)
+    {
+        int count = countDoctorInHospital(H, info(d).id);
+        if (count == 0)
+        {
+            total++;
+        }
+    }
+
+    cout << "Terdapat " << total << " Dokter yang tidak memiliki jadwal praktek";
 }
 
 void editDoctorScheduleInHospital(HospitalList &H, DoctorList &D)
