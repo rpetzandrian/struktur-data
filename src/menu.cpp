@@ -260,8 +260,19 @@ void deleteSchedules(HospitalList &H)
         cout << "Data jadwal tidak ditemukan" << endl;
     }
 }
-void searchHospital()
+void searchHospital(HospitalList &H)
 {
+    string id;
+    cout << "Masukkan ID Rumah Sakit : ";
+    cin >> id;
+    hospitalAdr hospital = findHospital(H , id);
+    if(hospital != nullptr){
+        cout << "Nama : " << info(hospital).name << endl;
+        cout << "ID : " << info(hospital).id << endl;
+        cout << "Alamat : " << info(hospital).hospital_address << endl;
+    } else {
+        cout << "Rumah Sakit tidak ditemukan" << endl;
+    }
     cout << "Not Implemented" << endl;
 }
 void searchDoctor(DoctorList &D)
