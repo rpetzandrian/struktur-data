@@ -67,6 +67,13 @@ hospitalAdr findHospital(HospitalList H, string id)
     {
         P = next(P);
     }
+
+    if (info(P).id != id)
+    {
+        cout << "Data rumah sakit tidak ditemukan" << endl;
+        return NULL;
+    }
+
     return P;
 }
 
@@ -101,7 +108,8 @@ void showHospital(HospitalList H, bool withDetail = false)
     }
 }
 
-void showDoctorFromHospitals(HospitalList H){
+void showDoctorFromHospitals(HospitalList H)
+{
     hospitalAdr P = first(H);
     while (P != NULL)
     {
@@ -113,14 +121,17 @@ void showDoctorFromHospitals(HospitalList H){
         {
             if (doctor(S) != NULL)
             {
-                data.push_back(vector<string>{ info(doctor(S)).name , info(doctor(S)).speciality });
+                data.push_back(vector<string>{info(doctor(S)).name, info(doctor(S)).speciality});
             }
             S = next(S);
         }
         string title = info(P).name + "\n#ID" + info(P).id + "\n" + info(P).hospital_address;
-        try {
-            printTable(2 , 20 , title , data);
-        } catch (const exception& e){
+        try
+        {
+            printTable(2, 20, title, data);
+        }
+        catch (const exception &e)
+        {
             cerr << "error : " << e.what() << endl;
         }
         P = next(P);

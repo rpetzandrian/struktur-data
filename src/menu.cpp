@@ -153,7 +153,7 @@ void handleChoice(HospitalList &H, DoctorList &D)
             break;
         case 19:
             // 19. Edit Jadwal Dokter di Rumah Sakit
-            editDoctorScheduleInHospital();
+            editDoctorScheduleInHospital(H, D);
             handleExit();
             break;
         case 0:
@@ -356,7 +356,7 @@ void doctorWithDetail()
     cout << "Not Implemented" << endl;
 }
 
-void countScheduleInHospital()
+void countScheduleInHospital(HospitalList &H)
 {
     cout << "Not Implemented" << endl;
 }
@@ -371,7 +371,42 @@ void countDoctorWithoutSchedule()
     cout << "Not Implemented" << endl;
 }
 
-void editDoctorScheduleInHospital()
+void editDoctorScheduleInHospital(HospitalList &H, DoctorList &D)
 {
-    cout << "Not Implemented" << endl;
+    // search rumah sakit
+    string id;
+    cout << "Masukkan ID Rumah Sakit: ";
+    cin >> id;
+    hospitalAdr h = findHospital(H, id);
+
+    // search dokter
+    DoctorAdr d = NULL;
+    if (h != NULL)
+    {
+        string idDoc;
+        cout << "Masukkan ID Dokter: ";
+        cin >> idDoc;
+        d = findDoctor(D, idDoc);
+    }
+
+    // search schedule
+    if (d != NULL)
+    {
+        showSchedule(schedule(h));
+
+        string idS;
+        cout << "Masukkan ID Jadwal yang ingin di ganti: ";
+        cin >> idS;
+        ScheduleAdr s = findSchedule(schedule(h), idS);
+
+        if (s == NULL)
+        {
+            cout << "Jadwal tidak tersedia" << endl;
+        }
+        else
+        {
+            doctor(s) = d;
+            cout << "Jadwal berhasil di rubah" << endl;
+        }
+    }
 }

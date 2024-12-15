@@ -8,7 +8,7 @@ void createScheduleList(ScheduleList &S)
     first(S) = NULL;
 }
 
-ScheduleAdr createScheduleElm(ScheduleInfo s , DoctorAdr d)
+ScheduleAdr createScheduleElm(ScheduleInfo s, DoctorAdr d)
 {
     ScheduleAdr P = new ScheduleElement;
     info(P) = s;
@@ -65,6 +65,13 @@ ScheduleAdr findSchedule(ScheduleList S, string id)
     {
         P = next(P);
     }
+
+    if (info(P).id != id)
+    {
+        cout << "Data jadwal tidak ditemukan" << endl;
+        return NULL;
+    }
+
     return P;
 }
 

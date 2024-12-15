@@ -51,6 +51,6 @@ void doctorWithDetail();
 void countScheduleInHospital();
 void countScheduleInDoctor();
 void countDoctorWithoutSchedule();
-void editDoctorScheduleInHospital();
+void editDoctorScheduleInHospital(HospitalList &H, DoctorList &D);
 
 #endif
