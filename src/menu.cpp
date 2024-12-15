@@ -433,7 +433,7 @@ void editDoctorScheduleInHospital(HospitalList &H, DoctorList &D)
 
         if (s != NULL)
         {
-            doctor(s) = d;
+            insertDoctorToSchedule(s, d);
             cout << "Jadwal berhasil diubah" << endl;
         }
     }

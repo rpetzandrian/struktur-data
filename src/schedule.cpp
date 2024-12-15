@@ -78,17 +78,30 @@ ScheduleAdr findSchedule(ScheduleList S, string id)
 void showSchedule(ScheduleList S)
 {
     ScheduleAdr P = first(S);
+    cout << "LIST JADWAL" << endl;
+
     while (P != NULL)
     {
+        cout << "+---------------------------------------+" << endl;
         cout << "ID: " << info(P).id << endl;
         cout << "Day: " << info(P).day << endl;
         cout << "Start: " << info(P).start << endl;
         cout << "End: " << info(P).end << endl;
+        if (doctor(P) != NULL)
+        {
+            cout << "Dokter saat ini: " << info(doctor(P)).name << endl;
+        }
+        else
+        {
+            cout << "Dokter saat ini: -" << endl;
+        }
+        cout << "+---------------------------------------+" << endl;
+
         P = next(P);
     }
 }
 
-void insertDoctorToSchedule(ScheduleList &S, ScheduleAdr P, DoctorAdr D)
+void insertDoctorToSchedule(ScheduleAdr P, DoctorAdr D)
 {
     doctor(P) = D;
 }
