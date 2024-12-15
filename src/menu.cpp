@@ -62,74 +62,97 @@ void handleChoice(HospitalList &H, DoctorList &D)
         switch (choice)
         {
         case 1:
+            // 1. Membuat data Rumah Sakit
             createHospital(H);
             handleExit();
             break;
         case 2:
+            // 2. Membuat data Dokter
             createDoctor(D);
             handleExit();
             break;
         case 3:
+            // 3. Membuat Penjadwalan Dokter
             createSchedule(H, D);
             handleExit();
             break;
         case 4:
+            // 4. Hapus Data Rumah Sakit
             deleteHospitals(H);
             handleExit();
             break;
         case 5:
+            // 5. Hapus Data Dokter
             deleteDoctors(D);
             handleExit();
             break;
         case 6:
+            // 6. Hapus Penjadwalan Dokter
             deleteSchedules(H);
             handleExit();
             break;
         case 7:
+            // 7. Cari Data Rumah Sakit
             searchHospital(H);
             handleExit();
             break;
         case 8:
+            // 8. Cari Data Dokter
             searchDoctor(D);
             handleExit();
             break;
         case 9:
+            // 9. Cari Data Jadwal
             searchSchedule();
             handleExit();
             break;
         case 10:
+            // 10. Tampilkan Data Rumah Sakit
             showHospitalList(H);
             handleExit();
             break;
         case 11:
+            // 11. Tampilkan Data Dokter
             showDoctorList(D);
             handleExit();
             break;
         case 12:
+            // 12. Tampilkan Data Dokter dari Rumah Sakit
             showDoctorFromHospitals(H);
             handleExit();
             break;
         case 13:
-            showHospitalWithDetail(H);
+            // 13. Tampilkan Data Rumah Sakit dari list Dokter
+            // showHospitalWithDetail(H);
             handleExit();
             break;
         case 14:
+            // 14. Tampilkan Data list rumah sakit dari Dokter
             doctorWithDetail();
             handleExit();
             break;
         case 15:
-            countScheduleInHospital();
+            // 15. Tampilkan Data Rumah Sakit dengan Detail
+            showHospitalWithDetail(H);
             handleExit();
             break;
         case 16:
-            countScheduleInDoctor();
+            // 16. Hitung Jumlah Jadwal di Rumah Sakit
+            countScheduleInHospital();
             handleExit();
             break;
         case 17:
-            countDoctorWithoutSchedule();
+            // 17. Hitung Jumlah Jadwal Dokter
+            countScheduleInDoctor();
             handleExit();
             break;
         case 18:
+            // 18. Hitung Jumlah Dokter tanpa Jadwal
+            countDoctorWithoutSchedule();
+            handleExit();
+            break;
+        case 19:
+            // 19. Edit Jadwal Dokter di Rumah Sakit
             editDoctorScheduleInHospital();
             handleExit();
             break;
