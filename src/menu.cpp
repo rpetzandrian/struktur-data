@@ -89,7 +89,7 @@ void handleChoice(HospitalList &H, DoctorList &D)
             handleExit();
             break;
         case 8:
-            searchDoctor();
+            searchDoctor(D);
             handleExit();
             break;
         case 9:
@@ -105,11 +105,11 @@ void handleChoice(HospitalList &H, DoctorList &D)
             handleExit();
             break;
         case 12:
-            showDoctorFromHospital(H);
+            showDoctorFromHospitals(H);
             handleExit();
             break;
         case 13:
-            showHospitalWithDetail();
+            showHospitalWithDetail(H);
             handleExit();
             break;
         case 14:
@@ -207,7 +207,7 @@ void createSchedule(HospitalList &H, DoctorList &D)
     cout << "Masukkan Jam Selesai: ";
     cin >> scheduleInfo.end;
 
-    ScheduleAdr schedule = createScheduleElm(scheduleInfo , d);
+    ScheduleAdr schedule = createScheduleElm(scheduleInfo, d);
     insertSchedule(schedule(h), schedule);
 }
 
@@ -216,10 +216,13 @@ void deleteHospitals(HospitalList &H)
     string id;
     cout << "Masukkan ID Rumah Sakit : ";
     cin >> id;
-    hospitalAdr hospital = deleteHospital(H , id);
-    if(hospital != nullptr){
+    hospitalAdr hospital = deleteHospital(H, id);
+    if (hospital != nullptr)
+    {
         cout << "Data Rumah Sakit berhasil terhapus" << endl;
-    } else {
+    }
+    else
+    {
         cout << "Data Rumah Sakit tidak ditemukan" << endl;
     }
 }
@@ -228,10 +231,13 @@ void deleteDoctors(DoctorList &D)
     string id;
     cout << "Masukkan ID Dokter : ";
     cin >> id;
-    DoctorAdr doctor = deleteDoctor(D , id);
-    if(doctor != nullptr){
+    DoctorAdr doctor = deleteDoctor(D, id);
+    if (doctor != nullptr)
+    {
         cout << "Data dokter berhasil terhapus" << endl;
-    } else {
+    }
+    else
+    {
         cout << "Data dokter tidak ditemukan" << endl;
     }
 }
@@ -243,68 +249,88 @@ void deleteSchedules(HospitalList &H)
     cin >> id;
     cout << "Masukkan ID Rumah Sakit : ";
     cin >> id_rs;
-    hospitalAdr hospital = findHospital(H , id_rs);
-    ScheduleAdr schedule = deleteSchedule(hospital->schedule , id);
-    if(schedule != nullptr){
+    hospitalAdr hospital = findHospital(H, id_rs);
+    ScheduleAdr schedule = deleteSchedule(hospital->schedule, id);
+    if (schedule != nullptr)
+    {
         cout << "Data jadwal berhasil terhapus" << endl;
-    } else {
+    }
+    else
+    {
         cout << "Data jadwal tidak ditemukan" << endl;
     }
 }
-void searchHospital(HospitalList &H)
-{
-    string id;
-    cout << "Masukkan ID Rumah Sakit : ";
-    cin >> id;
-    hospitalAdr hospital = findHospital(H , id);
-    if(hospital != nullptr){
-        cout << "Nama : " << info(hospital).name << endl;
-        cout << "ID : " << info(hospital).id << endl;
-        cout << "Alamat : " << info(hospital).hospital_address << endl;
-    } else {
-        cout << "Rumah Sakit tidak ditemukan" << endl;
-    }
-}
-void searchDoctor()
+void searchHospital()
 {
     cout << "Not Implemented" << endl;
 }
+void searchDoctor(DoctorList &D)
+{
+    // find doctor by id
+    string id;
+    cout << "Masukkan ID Dokter: ";
+    cin >> id;
+    DoctorAdr d = findDoctor(D, id);
+
+    if (d != NULL)
+    {
+        cout << "ID: " << info(d).id << endl;
+        cout << "Nama: " << info(d).name << endl;
+        cout << "Nomor SIP: " << info(d).sip_number << endl;
+        cout << "Umur: " << info(d).age << endl;
+        cout << "Spesialisasi: " << info(d).speciality << endl;
+    }
+    else
+    {
+        cout << "Dokter tidak ditemukan" << endl;
+    }
+}
+
 void searchSchedule()
 {
     cout << "Not Implemented" << endl;
 }
+
 void showHospitalList(HospitalList &H)
 {
     showHospital(H);
 }
+
 void showDoctorList(DoctorList &D)
 {
     showDoctor(D);
 }
+
 void showDoctorFromHospital(HospitalList H)
 {
     showDoctorFromHospitals(H);
 }
-void showHospitalWithDetail()
+
+void showHospitalWithDetail(HospitalList &H)
 {
-    cout << "Not Implemented" << endl;
+    showHospital(H);
 }
+
 void doctorWithDetail()
 {
     cout << "Not Implemented" << endl;
 }
+
 void countScheduleInHospital()
 {
     cout << "Not Implemented" << endl;
 }
+
 void countScheduleInDoctor()
 {
     cout << "Not Implemented" << endl;
 }
+
 void countDoctorWithoutSchedule()
 {
     cout << "Not Implemented" << endl;
 }
+
 void editDoctorScheduleInHospital()
 {
     cout << "Not Implemented" << endl;
