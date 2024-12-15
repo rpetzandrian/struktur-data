@@ -1,5 +1,6 @@
 #include <iostream>
 #include "doctor.h"
+#include "table.h"
 
 using namespace std;
 
@@ -81,14 +82,20 @@ DoctorAdr findDoctor(DoctorList D, string id)
 void showDoctor(DoctorList D)
 {
     DoctorAdr P = first(D);
+    vector<vector<string>> data;
+    string title = "Data Dokter";
+    data.push_back(vector<string>{"ID", "Nomor SIP", "Nama", "Spesialisasi", "Umur"});
     while (P != NULL)
     {
-        cout << "ID: " << info(P).id << endl;
-        cout << "Nomor SIP: " << info(P).sip_number << endl;
-        cout << "Nama: " << info(P).name << endl;
-        cout << "Spesialisasi: " << info(P).speciality << endl;
-        cout << "Umur: " << info(P).age << endl;
-        cout << endl;
+        data.push_back(vector<string>{info(P).id, info(P).sip_number, info(P).name, info(P).speciality, to_string(info(P).age)});
         P = next(P);
+    }
+    try
+    {
+        printTable(5, 20, title, data);
+    }
+    catch (const exception &e)
+    {
+        cerr << "error : " << e.what() << endl;
     }
 }

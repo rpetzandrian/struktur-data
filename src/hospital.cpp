@@ -83,32 +83,32 @@ void showHospital(HospitalList H, bool withDetail)
     hospitalAdr P = first(H);
     while (P != NULL)
     {
-        cout << "ID: " << info(P).id << endl;
-        cout << "Nama Rumah Sakit: " << info(P).name << endl;
-        cout << "Alamat: " << info(P).hospital_address << endl;
+        vector<vector<string>> data;
+        int totalSchedule = countSchedule(schedule(P));
+        string title = "#ID " + info(P).id + "\n" + info(P).name + "\n" + info(P).hospital_address + "\n" + "Total Jadwal: " + to_string(totalSchedule);
 
         ScheduleList SL = schedule(P);
         ScheduleAdr S = first(SL);
-        while (S != NULL && withDetail)
+        if (withDetail)
         {
-            cout << "===================================" << endl;
-            cout << "Id Jadwal: " << info(S).id << endl;
-            cout << "Hari: " << info(S).day << endl;
-            cout << "Mulai: " << info(S).start << endl;
-            cout << "Berakhir: " << info(S).end << endl;
-            if (doctor(S) != NULL)
+            data.push_back(vector<string>{"ID", "Hari", "Mulai", "Berakhir", "Dokter Saat Ini"});
+            while (S != NULL)
             {
-                cout << "Dokter saat ini: " << info(doctor(S)).name << endl;
+                string doctor = doctor(S) != NULL ? info(doctor(S)).name : "-";
+                data.push_back(vector<string>{info(S).id, info(S).day, info(S).start, info(S).end, doctor});
+                S = next(S);
             }
-            else
-            {
-                cout << "Dokter saat ini : -" << endl;
-            }
-            S = next(S);
-            cout << "===================================" << endl;
         }
 
-        cout << "+-----------------------------------+" << endl;
+        try
+        {
+            printTable(5, 20, title, data);
+        }
+        catch (const exception &e)
+        {
+            cerr << "error : " << e.what() << endl;
+        }
+
         P = next(P);
     }
 }
