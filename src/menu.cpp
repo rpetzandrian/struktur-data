@@ -180,6 +180,12 @@ void createHospital(HospitalList &H)
     cin >> hospitalInfo.id;
     cin.ignore();
 
+    if (findHospital(H, hospitalInfo.id) != NULL)
+    {
+        cout << "ID Rumah Sakit sudah ada" << endl;
+        return;
+    }
+
     cout << "Masukkan Nama Rumah Sakit: ";
     std::getline(cin, hospitalInfo.name);
 
@@ -198,6 +204,13 @@ void createDoctor(DoctorList &D)
     DoctorInfo doctorInfo;
     cout << "Masukkan ID Dokter: ";
     cin >> doctorInfo.id;
+
+    if (findDoctor(D, doctorInfo.id) != NULL)
+    {
+        cout << "ID Dokter sudah ada" << endl;
+        return;
+    }
+
     cout << "Masukkan Nama Dokter: ";
     cin >> doctorInfo.name;
     cout << "Masukkan Nomor SIP: ";
@@ -223,9 +236,22 @@ void createSchedule(HospitalList &H, DoctorList &D)
     cin >> doctorID;
     DoctorAdr d = findDoctor(D, doctorID);
 
+    if (searchDoctorInSchedule(schedule(h), doctorID) != NULL)
+    {
+        cout << "Dokter " << doctorID << " sudah jadwal di rumah sakit ini" << endl;
+        return;
+    }
+
     ScheduleInfo scheduleInfo;
     cout << "Masukkan ID Jadwal: ";
     cin >> scheduleInfo.id;
+
+    if (findSchedule(h->schedule, scheduleInfo.id) != NULL)
+    {
+        cout << "ID Jadwal sudah ada" << endl;
+        return;
+    }
+
     cout << "Masukkan Hari: ";
     cin >> scheduleInfo.day;
     cout << "Masukkan Jam Mulai: ";
