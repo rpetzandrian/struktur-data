@@ -70,7 +70,7 @@ hospitalAdr findHospital(HospitalList H, string id)
     return P;
 }
 
-void showHospital(HospitalList H, bool withDetail = false)
+void showHospital(HospitalList H, bool withDetail)
 {
     hospitalAdr P = first(H);
     while (P != NULL)
