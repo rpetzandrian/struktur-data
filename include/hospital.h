@@ -42,5 +42,6 @@ void showHospital(HospitalList H, bool withDetail);
 void showDoctorFromHospitals(HospitalList H);
 void countEveryHospitalSchedule(HospitalList H);
 int countDoctorInHospital(HospitalList H, string doctorId);
+void deleteDoctorInHospital(HospitalList H, string doctorId);
 
 #endif

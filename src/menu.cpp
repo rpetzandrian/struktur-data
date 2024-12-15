@@ -85,7 +85,7 @@ void handleChoice(HospitalList &H, DoctorList &D)
             break;
         case 5:
             // 5. Hapus Data Dokter
-            deleteDoctors(D);
+            deleteDoctors(D, H);
             handleExit();
             break;
         case 6:
@@ -125,12 +125,12 @@ void handleChoice(HospitalList &H, DoctorList &D)
             break;
         case 13:
             // 13. Tampilkan Data Rumah Sakit dari list Dokter
-            showHospitalListFromDoctorList(D , H);
+            showHospitalListFromDoctorList(D, H);
             handleExit();
             break;
         case 14:
             // 14. Tampilkan Data list rumah sakit dari Dokter
-            doctorWithDetail(D , H);
+            doctorWithDetail(D, H);
             handleExit();
             break;
         case 15:
@@ -243,7 +243,7 @@ void deleteHospitals(HospitalList &H)
     cout << "Masukkan ID Rumah Sakit : ";
     cin >> id;
     hospitalAdr hospital = deleteHospital(H, id);
-    if (hospital != nullptr)
+    if (hospital != NULL)
     {
         cout << "Data Rumah Sakit berhasil terhapus" << endl;
     }
@@ -252,14 +252,15 @@ void deleteHospitals(HospitalList &H)
         cout << "Data Rumah Sakit tidak ditemukan" << endl;
     }
 }
-void deleteDoctors(DoctorList &D)
+void deleteDoctors(DoctorList &D, HospitalList &H)
 {
     string id;
     cout << "Masukkan ID Dokter : ";
     cin >> id;
     DoctorAdr doctor = deleteDoctor(D, id);
-    if (doctor != nullptr)
+    if (doctor != NULL)
     {
+        deleteDoctorInHospital(H, id);
         cout << "Data dokter berhasil terhapus" << endl;
     }
     else
@@ -277,7 +278,7 @@ void deleteSchedules(HospitalList &H)
     cin >> id_rs;
     hospitalAdr hospital = findHospital(H, id_rs);
     ScheduleAdr schedule = deleteSchedule(hospital->schedule, id);
-    if (schedule != nullptr)
+    if (schedule != NULL)
     {
         cout << "Data jadwal berhasil terhapus" << endl;
     }
@@ -337,15 +338,23 @@ void searchSchedule(HospitalList &H)
     cout << "Masukkan ID Rumah Sakit : ";
     cin >> id_rs;
     hospitalAdr hospital = findHospital(H, id_rs);
-    if (hospital != nullptr)
+    if (hospital != NULL)
     {
         ScheduleAdr schedule = findSchedule(hospital->schedule, id);
-        if (schedule != nullptr)
+        if (schedule != NULL)
         {
             cout << "ID : " << info(schedule).id << endl;
             cout << "Hari : " << info(schedule).day << endl;
-            cout << "Start : " << info(schedule).start << endl;
-            cout << "End : " << info(schedule).end << endl;
+            cout << "Mulai : " << info(schedule).start << endl;
+            cout << "Berakhir : " << info(schedule).end << endl;
+            if (doctor(schedule) != NULL)
+            {
+                cout << "Dokter saat ini : " << info(doctor(schedule)).name << endl;
+            }
+            else
+            {
+                cout << "Dokter saat ini : -" << endl;
+            }
         }
         else
         {
@@ -377,41 +386,49 @@ void showHospitalWithDetail(HospitalList &H)
 {
     showHospital(H, true);
 }
-void showHospitalListFromDoctorList(DoctorList D , HospitalList H){
+void showHospitalListFromDoctorList(DoctorList D, HospitalList H)
+{
     DoctorAdr doctor = first(D);
-    while(doctor != NULL){
+    while (doctor != NULL)
+    {
         hospitalAdr hospital = first(H);
         vector<vector<string>> data;
-        while(hospital != NULL){
+        while (hospital != NULL)
+        {
             ScheduleList S = hospital->schedule;
             ScheduleAdr schedule = first(S);
-            while(schedule != NULL){
-                if(info(schedule->doctor).id == info(doctor).id){
+            while (schedule != NULL)
+            {
+                if (info(schedule->doctor).id == info(doctor).id)
+                {
                     string id_rs = "ID RS : " + info(hospital).id;
                     string rs = "RS : " + info(hospital).name;
                     string alamat = "Alamat : " + info(hospital).hospital_address;
-                    data.push_back(vector<string>{ id_rs , rs , alamat });
+                    data.push_back(vector<string>{id_rs, rs, alamat});
                 }
                 schedule = next(schedule);
             }
             hospital = next(hospital);
         }
         string title = "#ID " + info(doctor).id + "\n" + info(doctor).name + "\n" + info(doctor).sip_number + "\n" + to_string(info(doctor).age) + "\n" + info(doctor).speciality;
-        try {
-            printTable(3 , 20 , title , data);
-        } catch (const exception& e){
+        try
+        {
+            printTable(3, 20, title, data);
+        }
+        catch (const exception &e)
+        {
             cerr << "error : " << e.what() << endl;
         }
         doctor = next(doctor);
     }
 }
-void doctorWithDetail(DoctorList D , HospitalList H)
+void doctorWithDetail(DoctorList D, HospitalList H)
 {
     string id;
     cout << "Masukkan ID Dokter : ";
     cin >> id;
     DoctorAdr doctor = findDoctor(D, id);
-    if (doctor != nullptr)
+    if (doctor != NULL)
     {
         hospitalAdr hospital = first(H);
         while (hospital != NULL)

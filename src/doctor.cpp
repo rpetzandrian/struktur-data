@@ -84,10 +84,10 @@ void showDoctor(DoctorList D)
     while (P != NULL)
     {
         cout << "ID: " << info(P).id << endl;
-        cout << "SIP Number: " << info(P).sip_number << endl;
-        cout << "Name: " << info(P).name << endl;
-        cout << "Speciality: " << info(P).speciality << endl;
-        cout << "Age: " << info(P).age << endl;
+        cout << "Nomor SIP: " << info(P).sip_number << endl;
+        cout << "Nama: " << info(P).name << endl;
+        cout << "Spesialisasi: " << info(P).speciality << endl;
+        cout << "Umur: " << info(P).age << endl;
         cout << endl;
         P = next(P);
     }

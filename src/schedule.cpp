@@ -135,3 +135,20 @@ DoctorAdr searchDoctorInSchedule(ScheduleList S, string doctorId)
 
     return NULL;
 }
+
+void deleteDoctorInSchedule(ScheduleList S, string doctorId)
+{
+    ScheduleAdr P = first(S);
+    while (P != NULL)
+    {
+        if (info(doctor(P)).id == doctorId)
+        {
+            doctor(P) = NULL;
+            return;
+        }
+
+        P = next(P);
+    }
+
+    return;
+}

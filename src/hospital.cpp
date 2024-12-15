@@ -83,22 +83,26 @@ void showHospital(HospitalList H, bool withDetail)
     hospitalAdr P = first(H);
     while (P != NULL)
     {
-        cout << "Hospital ID: " << info(P).id << endl;
-        cout << "Hospital Name: " << info(P).name << endl;
-        cout << "Hospital Address: " << info(P).hospital_address << endl;
+        cout << "ID: " << info(P).id << endl;
+        cout << "Nama Rumah Sakit: " << info(P).name << endl;
+        cout << "Alamat: " << info(P).hospital_address << endl;
 
         ScheduleList SL = schedule(P);
         ScheduleAdr S = first(SL);
         while (S != NULL && withDetail)
         {
             cout << "===================================" << endl;
-            cout << "Schedule ID: " << info(S).id << endl;
-            cout << "Day: " << info(S).day << endl;
-            cout << "Start: " << info(S).start << endl;
-            cout << "End: " << info(S).end << endl;
+            cout << "Id Jadwal: " << info(S).id << endl;
+            cout << "Hari: " << info(S).day << endl;
+            cout << "Mulai: " << info(S).start << endl;
+            cout << "Berakhir: " << info(S).end << endl;
             if (doctor(S) != NULL)
             {
-                cout << "Doctor Name: " << info(doctor(S)).name << endl;
+                cout << "Dokter saat ini: " << info(doctor(S)).name << endl;
+            }
+            else
+            {
+                cout << "Dokter saat ini : -" << endl;
             }
             S = next(S);
             cout << "===================================" << endl;
@@ -153,8 +157,8 @@ void countEveryHospitalSchedule(HospitalList H)
             S = next(S);
         }
 
-        cout << "Hospital ID: " << info(P).id << endl;
-        cout << "Total Schedule: " << count << endl;
+        cout << "ID: " << info(P).id << endl;
+        cout << "Total Jadwal: " << count << endl;
 
         P = next(P);
     }
@@ -177,4 +181,16 @@ int countDoctorInHospital(HospitalList H, string doctorId)
     }
 
     return count;
+}
+
+void deleteDoctorInHospital(HospitalList H, string doctorId)
+{
+    hospitalAdr h = first(H);
+    while (h != NULL)
+    {
+        deleteDoctorInSchedule(schedule(h), doctorId);
+        h = next(h);
+    }
+
+    return;
 }
