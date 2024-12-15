@@ -34,11 +34,13 @@ struct ScheduleList
 };
 
 void createScheduleList(ScheduleList &S);
-ScheduleAdr createScheduleElm(ScheduleInfo s , DoctorAdr d);
+ScheduleAdr createScheduleElm(ScheduleInfo s, DoctorAdr d);
 void insertSchedule(ScheduleList &S, ScheduleAdr P);
 ScheduleAdr deleteSchedule(ScheduleList &S, string id);
 ScheduleAdr findSchedule(ScheduleList S, string id);
 void showSchedule(ScheduleList S);
-void insertDoctorToSchedule(ScheduleList &S, ScheduleAdr P, DoctorAdr D);
+void insertDoctorToSchedule(ScheduleAdr P, DoctorAdr D);
+int countSchedule(ScheduleList S);
+DoctorAdr searchDoctorInSchedule(ScheduleList S, string doctorId);
 
 #endif

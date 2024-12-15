@@ -3,20 +3,20 @@
 #include "hospital.h"
 #include "doctor.h"
 #include "menu.h"
-//#include "table.h"
+// #include "table.h"
 
 using namespace std;
 
 int main()
 {
-    HospitalList H;
-    createHospitalList(H);
+	HospitalList H;
+	createHospitalList(H);
 
-    DoctorList D;
-    createDoctorList(D);
+	DoctorList D;
+	createDoctorList(D);
 
-    handleChoice(H, D);
-    // vector<vector<string>> data;
+	handleChoice(H, D);
+	// vector<vector<string>> data;
 
 	// // Adding rows incrementally
 	// data.push_back(vector<string>{ "Cell11", "Cell12", "Cell13" });
@@ -30,5 +30,5 @@ int main()
 	// 	cerr << "Error: " << e.what() << endl;
 	// }
 
-    return 0;
+	return 0;
 }

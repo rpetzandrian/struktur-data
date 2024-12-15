@@ -68,6 +68,13 @@ DoctorAdr findDoctor(DoctorList D, string id)
     {
         P = next(P);
     }
+
+    if (P == NULL || info(P).id != id)
+    {
+        cout << "Data dokter tidak ditemukan" << endl;
+        return NULL;
+    }
+
     return P;
 }
 
